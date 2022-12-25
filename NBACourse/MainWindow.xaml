@@ -5,35 +5,66 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NBACourse"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" >
     <Grid Background="Beige">
         <TabControl>
             <TabItem Header="Лига/Конференция">
                 <Grid Background="#999999">
                     <TextBlock HorizontalAlignment="Left" Margin="53,10,0,0" TextWrapping="Wrap" Text="Выберите лигу" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
                     <StackPanel Margin="10,31,0,203" Orientation="Horizontal" HorizontalAlignment="Left" Width="236">
-                        <Button Content="" Width="108" Height="156">
+                        <Button x:Name="SelectNBA" Content="" Width="108" Height="156" Click="Button_Click">
                             <Button.Background>
-                                <ImageBrush ImageSource="/nba.png" Stretch="UniformToFill"/>
+                                <ImageBrush ImageSource="Images/nba.png" Stretch="UniformToFill"/>
                             </Button.Background>
                         </Button>
-                        <Button Content="" Width="105" Height="156">
+                        <Button x:Name="SelectG" Content="" Width="105" Height="156" Click="SelectG_Click">
                             <Button.Background>
-                                <ImageBrush Stretch="UniformToFill" ImageSource="/nba-logo-silhouette-player-27-transformed.png"/>
+                                <ImageBrush Stretch="UniformToFill" ImageSource="Images/nba-logo-silhouette-player-27-transformed.png"/>
                             </Button.Background>
                         </Button>
                     </StackPanel>
-                    <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="251,21,21,112"/>
+                    <DataGrid x:Name="ConferenceList" Margin="246,53,26,80" AutoGenerateColumns="False" IsReadOnly="true">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Лига" Binding="{Binding LeagueName}" Width="90"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Конференция" Binding="{Binding ConfName}" Width="130"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Игрок недели " Binding="{Binding PlayerOfW}" Width="150"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Игрок месяца" Binding="{Binding PlayerOfM}" Width="*"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <TextBlock HorizontalAlignment="Left" Margin="449,10,0,0" TextWrapping="Wrap" Text="Конференции" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                    <Button x:Name="RefreshConf" Content="Обновить" HorizontalAlignment="Left" Margin="674,331,0,0" VerticalAlignment="Top" Width="94" Height="26" Click="RefreshConf_Click" />
                 </Grid>
             </TabItem>
-            <TabItem Header="Дивизион/Команда">
+            <TabItem Header="Дивизион">
                 <Grid Background="#999999">
-                    <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,22,355,90"/>
-                    <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="373,22,10,89"/>
+                    <DataGrid x:Name="DivionsList" AutoGenerateColumns="False" IsReadOnly="true" Margin="130,42,111,70">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Конференция" Binding="{Binding Conf.ConfName}" Width="130"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Дивизион" Binding="{Binding DivName}" Width="130"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Защищающаяся команда" Binding="{Binding MostDefTeam}" Width="150"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Атакующая команда" Binding="{Binding MostAttackTeam}" Width="*"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="RefreshDiv" Content="Обновить" HorizontalAlignment="Left" Margin="577,341,0,0" VerticalAlignment="Top" Width="87" Height="26" Click="RefreshDiv_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Команда">
+                <Grid Background="#999999">
+                    <DataGrid x:Name="TeamList" Margin="79,10,103,67" IsReadOnly="true">
+                        
+                    </DataGrid>
+                    <Button x:Name="RefreshTeam" Content="Обновить" HorizontalAlignment="Left" Margin="612,344,0,0" VerticalAlignment="Top" Width="79" Height="32" Click="RefreshTeam_Click"/>
+
                 </Grid>
             </TabItem>
             <TabItem Header="Игрок">
-                <Grid Background="#999999"/>
+                <Grid Background="#999999">
+                    <DataGrid x:Name="PlayerList" Margin="79,10,103,67" IsReadOnly="true">
+
+                    </DataGrid>
+                    <Button x:Name="RefreshPl" Content="Обновить" HorizontalAlignment="Left" Margin="612,344,0,0" VerticalAlignment="Top" Width="79" Height="32" Click="RefreshTeam_Click"/>
+
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>

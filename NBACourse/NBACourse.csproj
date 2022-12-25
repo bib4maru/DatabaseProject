@@ -22,8 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="nba-logo-silhouette-player-27-transformed.png" />
-    <Resource Include="nba.png" />
+    <Resource Include="Images\nba-logo-silhouette-player-27-transformed.png" />
+    <Resource Include="Images\nba.png" />
   </ItemGroup>
 
 </Project>
